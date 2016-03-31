@@ -1,9 +1,14 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="theme-color" content="#db5945">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/snackbar.min.css" />
+    <link rel="stylesheet" href="assets/css/wrap.css" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -12,32 +17,62 @@
     <![endif]-->
     <style>
       body {
-        background: #db5945;
+        background: #ECECEC url('assets/img/bg.jpg') no-repeat bottom right fixed;
+        background-position-y: 20px;
+      }
+      .snackbar {
+        background: rgba(0, 23, 52, 0.8);
+        padding: 7px;
+        color: #fff;
+      }
+      .inputShadow:focus {
+        -webkit-box-shadow: inset 0 -2px 0 rgba(0, 23, 52, 0.9) !important;
+        box-shadow: inset 0 -2px 0 rgba(0, 23, 52, 0.9) !important;
+        background-color: #fafafa !important;
       }
     </style>
   </head>
 
   <body onload="init()">
 
-	  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="cordova.js" type="text/javascript"></script>
-    
-    <script type="text/javascript" charset="utf-8">
-      document.addEventListener("deviceready", onDeviceReady, false);
-      function onDeviceReady() {
+    <div id="launcherPage" data-role="page"></div>
 
-        AndroidWear.onConnect(function(e) {
-          alert("Connection Successfully Established - handle: " + e.handle);
+    <div id="loginPage" data-role="page" class="container loginPage">
 
-          AndroidWear.onDataReceived(e.handle, function(e) {
-            alert("Data received - handle: " + e.handle + " data: "+ e.data);
-          });
+      <div class="row" style="margin-left: 0;margin-right: 0;">
+        <div class="col-xs-12 headerLogo">
+          <div class="col-xs-6">
+            <img src="assets/img/sspm_logo.png" class="img img-responsive headerImg" alt="logo" />
+          </div>
+          <div class="col-xs-6">
+            <p class="headerText">
+              Aplicación Búsqueda de
+              <span style="color: rgba(0, 23, 52, 0.8);font-weight: 600;"> Oficiales</span>
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="wrap">
+                <form class="login" id="formLogin" role="form">
+                  <input type="text" name="usuario" id="usuario" class="form-control inputShadow" placeholder="Nombre de usuario" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required/>
+                  <input type="password" name="contrasena" id="contrasena" class="form-control inputShadow" placeholder="Contraseña" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required/>
+                  <input type="submit" class="btn btn-sm btn-primary" value="Iniciar sesión" id="submitSesion"/>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="assets/js/jquery.min.js"></script>
+    <!--script src="cordova.js" type="text/javascript"></script-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/snackbar.min.js"></script>
+    <script src="assets/js/app-login.js"></script>
 
-          AndroidWear.sendData(e.handle, "Hello From Cordova!");
-        });
-
-      }
-    </script>
-
+    <!--script type="text/javascript" charset="utf-8">
+      /*document.addEventListener("deviceready", onDeviceReady, false);
+      function onDeviceReady() { }*/
+    </script-->
   </body>
 </html>
